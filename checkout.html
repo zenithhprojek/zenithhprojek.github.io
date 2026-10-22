@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout Paket</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0b0d0b;
+      color: white;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    .checkout {
+      width: 100%;
+      max-width: 430px;
+      padding: 30px;
+      background: #111711;
+      border: 1px solid #303830;
+      border-radius: 16px;
+    }
+
+    h1 { font-size: 26px; }
+
+    .label { color: #aaa; }
+
+    .price {
+      color: #a3e635;
+      font-size: 34px;
+      font-weight: bold;
+    }
+
+    .pay {
+      display: block;
+      margin-top: 25px;
+      padding: 15px;
+      background: #a3e635;
+      color: #101510;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+    }
+
+    .back {
+      display: block;
+      margin-top: 20px;
+      color: #ccc;
+      text-align: center;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <main class="checkout">
+    <p class="label">CHECKOUT</p>
+    <h1>Konfirmasi Paket</h1>
+    <p class="label">Paket pilihan kamu:</p>
+
+    <h2 id="nama">Pro</h2>
+    <p class="price" id="harga">Rp350.000</p>
+
+    <p>Pastikan pilihan paket kamu sudah benar.</p>
+
+    <a class="pay" href="mailto:admin@contoh.com?subject=Pesanan%20Paket"
+       id="bayar">Hubungi Admin untuk Pembayaran →</a>
+
+    <a class="back" href="index.html">← Kembali ke halaman paket</a>
+
+    <p class="label" style="font-size:12px;margin-top:20px">
+      Pembayaran perlu dikonfirmasi oleh admin.
+    </p>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const paket = (params.get("paket") || "pro").toLowerCase();
+
+    const daftar = {
+      starter: { nama: "Starter", harga: 150000 },
+      pro: { nama: "Pro", harga: 350000 }
+    };
+
+    const pilihan = daftar[paket] || daftar.pro;
+
+    document.getElementById("nama").textContent = pilihan.nama;
+    document.getElementById("harga").textContent =
+      "Rp" + pilihan.harga.toLocaleString("id-ID");
+  </script>
+</body>
+</html>
+
